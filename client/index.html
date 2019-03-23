@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link rel="stylesheet" href="./css/styles.css">    
+		<title>Revolución En La Granja</title>
+</head>
+<body>
+		<nav id="myNavbar" class="navbar navbar-inverse">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<a class="navbar-brand active">Revolución en la granja</a>
+					</div>
+					<ul class="nav navbar-nav">
+						<li class="active"><a>Cliente</a></li>
+						<li><a>Pago</a></li>
+					</ul>
+				</div>
+            </nav>
+		<div class="container-fluid" id="cliente">
+				<div class="row">
+                    <div class="col-md-6">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8">
+                            <h3>Registrar cliente</h3>
+                            <form class="myForm">
+                                <div class="form-group">
+                                    <label for="cedula">Cédula:</label>
+                                    <input type="text" class="form-control" id="cedula" placeholder="Ingrese su cédula" name="cedula" size="12" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nombre">Nombre:</label>
+                                    <input type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre" name="nombre" required/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="telefono">teléfono:</label>
+                                    <input type="text" class="form-control" id="telefono" placeholder="Ingrese su teléfono" name="telefono" required/>
+                                </div>
+                                <div id="granjero">
+                                        <div class="form-group">
+                                            <label for="nombre_de_granja">Nombre de la granja:</label>
+                                            <input type="text" class="form-control" id="nombre_de_granja" placeholder="Ingrese el nombre de la granja" name="nombre_de_granja" required/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="direccion_de_granja">Dirección de la granja:</label>
+                                            <input type="text" class="form-control" id="direccion_de_granja" placeholder="Ingrese la dirección de la granja" name="direccion_de_granja" required/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="numero_de_animales">teléfono:</label>
+                                            <input type="text" class="form-control" id="numero_de_animales" placeholder="Ingrese su teléfono" name="numero_de_animales" required/>
+                                        </div>
+                                </div>
+                                <input type="hidden" name="opcion" value="insertarCliente">
+                                <input type="checkbox" name="tipo" id="tipo"> Granjero. <br>
+                                <input id="btnRegistrarCliente" class="btn btn-default pull-right" type="submit" value="Registrar"/>							
+                            </form>
+                        </div>
+                    </div>
+						<div class="col-md-6"></div>
+                </div>
+                <div class="row">
+                    <div id="mensajeExito" class="pull-right alert alert-success"></div>
+                    <div id="mensajeFracaso" class="pull-right alert alert-danger"></div>
+                </div>
+		</div>
+</body>
+<script src="./scripts/peticiones.js"></script>
+<script src="./scripts/eventos.js"></script>
+</html>

@@ -1,0 +1,46 @@
+#myNavbar {
+    background-color: #370A65 ;
+    border-color: #370A65 ;
+}
+.navbar-brand.active, .navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
+    color: #ffffff;
+    background-color: #5800B2;
+}
+.navbar-inverse .navbar-nav>a:hover, .navbar-brand.active:hover{
+    background-color: #5800B2;
+}
+input[type=text]:focus {
+    border: 3px solid #FFA319;
+}
+.btn.btn-default {
+    background-color: #370A65 !important;
+    color: white !important;
+    border-color: rgb(39, 3, 75) !important;
+  }
+.btn.btn-default:hover {
+    background-color: #5800B2 !important;
+    border-color: #5800B2 !important;
+}
+h3 {
+    font-weight: bold;
+    font-size: 35px !important;
+    vertical-align: middle;
+    text-align: center;
+    border-bottom: 3px #370A65 solid;
+    padding: 15px;
+    margin-bottom: 20px !important; 
+  }
+  h3:hover, h3.active{
+      background-color: #ffedd3;
+      border-bottom: 3px #FFA319 solid;
+  }
+  #granjero{
+      display: none;
+  }
+  .alert{
+      display: none;
+      text-align: center;
+  }
+  .myForm {
+      display: none;
+  }
