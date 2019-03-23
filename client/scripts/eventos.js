@@ -7,12 +7,21 @@ $(document).ready(function () {
         }
     }
     );
-    $('h3').click(()=>{
-        if ($('h3').attr("class")=='active') {
-            $('h3').attr({"class":""});
+    $('h3').click(function(){
+        if ($(this).attr("class")=='active') {
+            $(this).attr({"class":""});
         } else {
-            $('h3').attr({"class":"active"});            
+            $(this).attr({"class":"active"});            
         }
-        $(".myForm").fadeToggle();
+        if($(this).attr("id")=="titleCliente"){
+            $("#formCliente").fadeToggle();
+        }
+        else if($(this).attr("id")=="titlePago"){
+            $("#formPago").fadeToggle();
+        }
+    });
+    $( ".infoCliente" ).css( "color", "red" );
+    $("td").click(function() {
+        alert();
     });
 });

@@ -21,6 +21,14 @@ input[type=text]:focus {
     background-color: #5800B2 !important;
     border-color: #5800B2 !important;
 }
+.btn.btn-warning {
+    background-color: #FFA319 !important;
+    color: white !important;
+    border-color: #FFA319 !important;
+  }
+.btn.btn-warning:hover {
+    background-color: #eea947 !important;
+}
 h3 {
     font-weight: bold;
     font-size: 35px !important;
@@ -33,6 +41,7 @@ h3 {
   h3:hover, h3.active{
       background-color: #ffedd3;
       border-bottom: 3px #FFA319 solid;
+    cursor: pointer;
   }
   #granjero{
       display: none;
@@ -44,3 +53,14 @@ h3 {
   .myForm {
       display: none;
   }
+  .table-hover>tbody>tr:hover {
+    background-color: rgb(209, 164, 255);
+    color: white;
+    cursor: pointer;
+}
+.modal-header {
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    background-color: #370A65;
+}

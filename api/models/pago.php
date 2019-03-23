@@ -9,7 +9,6 @@ class Pago{
     }
     public static function registrarPago($id,
                                         $saldo,
-                                        $fecha,
                                         $total,
                                         $cedula_deudor,
                                         $cedula_fiador){
@@ -18,7 +17,7 @@ class Pago{
         }
         else{            
             $query="INSERT INTO PAGO (id,saldo,fecha,total,cedula_deudor,cedula_fiador)
-                    VALUES ('$id','$saldo','$fecha','$total','$cedula_deudor','$cedula_fiador');";
+                    VALUES ('$id','$saldo',CURRENT_DATE(),'$total','$cedula_deudor','$cedula_fiador');";
             $res=mysqli_query(Connex::conn(),$query);
             if ($res) {
                 return true;

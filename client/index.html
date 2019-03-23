@@ -5,7 +5,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-		<link rel="stylesheet" href="./css/styles.css">    
+        <link rel="stylesheet" href="./css/styles.css"> 
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>   
 		<title>Revolución En La Granja</title>
 </head>
 <body>
@@ -15,18 +16,19 @@
 						<a class="navbar-brand active">Revolución en la granja</a>
 					</div>
 					<ul class="nav navbar-nav">
-						<li class="active"><a>Cliente</a></li>
-						<li><a>Pago</a></li>
+						<li class="active"><a>Insertar</a></li>
+						<li><a>Consultar</a></li>
+						<li><a>Eliminar</a></li>
 					</ul>
 				</div>
             </nav>
-		<div class="container-fluid" id="cliente">
+		<div class="container-fluid" id="insertar">
 				<div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-6" id="cliente">
                         <div class="col-md-2"></div>
                         <div class="col-md-8">
-                            <h3>Registrar cliente</h3>
-                            <form class="myForm">
+                            <h3 id="titleCliente">Registrar cliente</h3>
+                            <form class="myForm" id="formCliente">
                                 <div class="form-group">
                                     <label for="cedula">Cédula:</label>
                                     <input type="text" class="form-control" id="cedula" placeholder="Ingrese su cédula" name="cedula" size="12" required>
@@ -36,7 +38,7 @@
                                     <input type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre" name="nombre" required/>
                                 </div>
                                 <div class="form-group">
-                                    <label for="telefono">teléfono:</label>
+                                    <label for="telefono">Teléfono:</label>
                                     <input type="text" class="form-control" id="telefono" placeholder="Ingrese su teléfono" name="telefono" required/>
                                 </div>
                                 <div id="granjero">
@@ -49,7 +51,7 @@
                                             <input type="text" class="form-control" id="direccion_de_granja" placeholder="Ingrese la dirección de la granja" name="direccion_de_granja" required/>
                                         </div>
                                         <div class="form-group">
-                                            <label for="numero_de_animales">teléfono:</label>
+                                            <label for="numero_de_animales">Número de animales:</label>
                                             <input type="text" class="form-control" id="numero_de_animales" placeholder="Ingrese su teléfono" name="numero_de_animales" required/>
                                         </div>
                                 </div>
@@ -59,14 +61,98 @@
                             </form>
                         </div>
                     </div>
-						<div class="col-md-6"></div>
+					<div class="col-md-6" id="pago">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8">
+                            <h3 id="titlePago">Registrar pago</h3>
+                            <form class="myForm" id="formPago">
+                                <div class="form-group">
+                                    <label for="id">ID:</label>
+                                    <input type="text" class="form-control" id="id" placeholder="Ingrese el ID" name="id" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="saldo">Saldo:</label>
+                                    <input type="text" class="form-control" id="saldo" placeholder="Ingrese el saldo" name="saldo" required/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="total">Total:</label>
+                                    <input type="text" class="form-control" id="total" placeholder="Ingrese el total" name="total" required/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="deudor">Deudor:</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="deudor" placeholder="Seleccione al deudor" name="deudor" disabled required/>
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-warning" id="btnSeleccionarDeudor" data-toggle="modal" data-target="#modalDeudor" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="fiador">Fiador:</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="fiador" placeholder="Seleccione al fiador" name="fiador" disabled required/>
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-warning" id="btnSeleccionarFiador" data-toggle="modal" data-target="#modalFiador" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="opcion" value="insertarPago">
+                                <input id="btnRegistrarPago" class="btn btn-default pull-right" type="submit" value="Registrar"/>							
+                            </form>
+                        </div>
+                    </div>
                 </div>
                 <div class="row">
                     <div id="mensajeExito" class="pull-right alert alert-success"></div>
                     <div id="mensajeFracaso" class="pull-right alert alert-danger"></div>
                 </div>
+                <!-- Modal Deudor-->
+                <div class="modal fade" id="modalDeudor" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Deudor</h4>
+                                </div>
+                                <div class="modal-body">
+                                        <table class="table table-hover tablaClientes">
+                                                
+                                                  
+                                        </table>
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>
+                        
+                        </div>
+                    </div>
+                <!-- Modal Fiador-->
+                <div class="modal fade" id="modalFiador" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Fiador</h4>
+                                </div>
+                                <div class="modal-body">
+                                        <table class="table table-hover tablaClientes">
+                                            
+                                        </table>
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>
+                        
+                        </div>
+                    </div>
 		</div>
 </body>
-<script src="./scripts/peticiones.js"></script>
+<!-- <script src="./scripts/peticiones.js"></script> -->
+
 <script src="./scripts/eventos.js"></script>
+<script src="./scripts/request.js"></script>
 </html>
