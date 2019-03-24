@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="./css/styles.css"> 
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>   
+		<title>Revolución En La Granja</title>
+</head>
+<body>
+    <nav id="myNavbar" class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand active">Revolución en la granja</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="./index.html">Insertar</a></li>
+                <li class="active"><a>Consultar</a></li>
+                <li><a href="./eliminar.html">Eliminar</a></li>
+            </ul>
+        </div>
+    </nav><br><br><br>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-5">
+                <ul class="list-group text-center">
+                    <li class="list-group-item active">Cliente</li>
+                    <li class="list-group-item"><b>Búsqueda tipo I: </b>Clientes sin pago.</li>
+                    <li class="list-group-item"><b>Búsqueda tipo II: </b>Clientes fiadores.</li>
+                    <li class="list-group-item"><b>Búsqueda tipo III: </b>Clientes fiadores asociados a un sólo deudor.</li>
+                </ul> 
+                <div class="panel-group">
+                    <div class="panel panel-default">
+                        <div class="panel-heading text-center">
+                            <h4>CLIENTES</h4>
+                        </div>
+                        <div class="panel-body text-center">
+                            <table class="table table-hover tablaClientes">
+                                        
+                            </table>
+                            <div class="btn-group btn-group-lg">
+                                <button type="button" id="btnTipoICliente" class="btn btn-warning">Tipo I</button>
+                                <button type="button" id="btnTipoIICliente" class="btn btn-warning">Tipo II</button>
+                                <button type="button" id="btnTipoIIICliente" class="btn btn-warning">Tipo III</button>
+                            </div>
+                        </div>      
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-5">
+                <ul class="list-group text-center">
+                    <li class="list-group-item active">Pago</li>
+                    <li class="list-group-item"><b>Búsqueda tipo I (cédula): </b>Pagos que el cliente fía.</li>
+                    <li class="list-group-item"><b>Búsqueda tipo II (ID): </b>Deudor del pago y sus fiadores.</li>
+                </ul> 
+                <div class="panel-group">
+                    <div class="panel panel-default">
+                        <div class="panel-heading text-center">
+                            <h4>PAGOS</h4>
+                        </div>
+                        <div class="panel-body text-center">
+                            <table class="table table-hover tablaPagos">
+                                        
+                            </table>
+                            <input type="text" class="form-control" id="id" placeholder="Concepto de búsqueda" name="id" required><br>
+                            <div class="btn-group btn-group-lg">
+                                <button type="button" id="btnTipoIPago" class="btn btn-warning">Tipo I</button>
+                                <button type="button" id="btnTipoIIPago" class="btn btn-warning">Tipo II</button>
+                            </div>
+                        </div>      
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div id="mensajeFracaso" class="pull-right alert alert-danger"></div>
+        </div>
+    </div>
+    
+</body>
+            <!-- <script src="./scripts/peticiones.js"></script> -->
+            
+<script src="./scripts/eventos.js"></script>
+<script src="./scripts/request.js"></script>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="./css/styles.css"> 
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>   
+		<title>Revolución En La Granja</title>
+</head>
+<body>
+    <nav id="myNavbar" class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand active">Revolución en la granja</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="./index.html">Insertar</a></li>
+                <li><a href="./buscar.html">Consultar</a></li>
+                <li class="active"><a>Eliminar</a></li>
+            </ul>
+        </div>
+    </nav><br><br><br>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-4">
+                <ul class="list-group">
+                    <li class="list-group-item active text-center"><h4>CLIENTES</h4></li>
+                    <li class="list-group-item"><b>Cédula: </b>xxxxxxxx <b>Nombre: </b>xxxxxxxx</li>
+                    <li class="list-group-item"><b>Cédula: </b>xxxxxxxx <b>Nombre: </b>xxxxxxxx</li>
+                    <li class="list-group-item"><b>Cédula: </b>xxxxxxxx <b>Nombre: </b>xxxxxxxx</li>
+                </ul> 
+                <form>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="cedula" placeholder="Ingrese la cédula" name="cedula" required/>
+                        <div class="input-group-btn">
+                            <button class="btn btn-warning" id="btnEliminarPago" type="submit"><i class="glyphicon glyphicon-trash"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-4">
+                <ul class="list-group">
+                    <li class="list-group-item active text-center"><h4>PAGOS</h4></li>
+                    <li class="list-group-item"><b>ID: </b>xxxxxxxx <b>Saldo: </b>xxxxxxxx</li>
+                    <li class="list-group-item"><b>ID: </b>xxxxxxxx <b>Saldo: </b>xxxxxxxx</li>
+                    <li class="list-group-item"><b>ID: </b>xxxxxxxx <b>Saldo: </b>xxxxxxxx</li>
+                </ul> 
+                <form>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="id" placeholder="Ingrese el ID" name="id" required/>
+                        <div class="input-group-btn">
+                            <button class="btn btn-warning" id="btnEliminarPago" type="submit"><i class="glyphicon glyphicon-trash"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div id="mensajeExito" class="pull-right alert alert-success"></div>
+            <div id="mensajeFracaso" class="pull-right alert alert-danger"></div>
+        </div>
+    </div>
+</body>
+<!-- <script src="./scripts/peticiones.js"></script> -->
+
+<script src="./scripts/eventos.js"></script>
+<script src="./scripts/request.js"></script>
+</html>

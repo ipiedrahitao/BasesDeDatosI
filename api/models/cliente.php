@@ -1,5 +1,5 @@
 <?php 
-require('../models/conex.php');
+require_once('../models/conex.php');
 class Cliente{
     public static function cedulaExiste($cedula){
         $query="SELECT * 

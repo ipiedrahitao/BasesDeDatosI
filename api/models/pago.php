@@ -1,5 +1,5 @@
 <?php 
-require('../models/conex.php');
+require_once('../models/conex.php');
 class Pago{
     public static function idExiste($id){
         $query="SELECT * 
@@ -45,7 +45,7 @@ class Pago{
     public static function buscarPagosQueFia($cedula_fiador){
         $query="SELECT * 
                 FROM PAGO 
-                WHERE cedula_fiador='$cedula_fiador');";
+                WHERE cedula_fiador='$cedula_fiador';";
         $res=mysqli_query(Connex::conn(),$query);
         $rows=Array();
         if ($res->num_rows > 0) {
@@ -57,20 +57,22 @@ class Pago{
             return false;
         }
     }
-    public static function buscarDeudoresYSusFiadores(){
-        $query="SELECT c.cedula,c.nombre, COUNT(p.cedula_fiador) AS fiando 
+    public static function buscarDeudorYSusFiadores($id){
+        $query="SELECT c.*
                 FROM CLIENTE AS c, PAGO AS p 
-                WHERE c.cedula=p.cedula_fiador 
-                GROUP BY p.cedula_fiador;";
+                WHERE c.cedula=p.cedula_deudor AND p.id='$id';";
         $res=mysqli_query(Connex::conn(),$query);
         $rows=Array();
         if ($res->num_rows > 0) {
             while($row = $res->fetch_assoc()) {
                 $rows[]=$row;
             }
-            $query="SELECT c.cedula,c.nombre, 0 AS fiando FROM CLIENTE AS c WHERE c.cedula NOT IN (SELECT DISTINCT p.cedula_fiador FROM PAGO AS p);";
+            $cedula_deudor=$rows[0]["cedula"];
+            $query="SELECT DISTINCT c.*
+                FROM CLIENTE AS c, PAGO AS p 
+                WHERE c.cedula=p.cedula_fiador AND p.cedula_deudor='$cedula_deudor';";
             $res=mysqli_query(Connex::conn(),$query);
-            if ($res->num_rows > 0) {
+            if ( $res->num_rows > 0) {
                 while($row = $res->fetch_assoc()) {
                     $rows[]=$row;
                 }

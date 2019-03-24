@@ -20,7 +20,6 @@ $(document).ready(function () {
             $("#formPago").fadeToggle();
         }
     });
-    $( ".infoCliente" ).css( "color", "red" );
     $("td").click(function() {
         alert();
     });

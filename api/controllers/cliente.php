@@ -1,5 +1,5 @@
 <?php 
-require('../models/cliente.php');
+require_once('../models/cliente.php');
 if (isset($_POST['opcion'])) {
     $opcion=$_POST['opcion'];
 } else if(isset($_GET['opcion'])){

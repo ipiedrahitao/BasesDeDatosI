@@ -1,6 +1,6 @@
 <?php 
-require('../models/pago.php');
-require('../models/cliente.php');
+require_once('../models/pago.php');
+require_once('../models/cliente.php');
 if (isset($_POST['opcion'])) {
     $opcion=$_POST['opcion'];
 } else if(isset($_GET['opcion'])){
@@ -45,7 +45,7 @@ switch($opcion){
             $respuesta['mensaje']='Es posible que ese número de id no exista, intenta otro por favor';
         }
         break;
-    case 'buscarPagosQueFia': #todos los pagos a los cuales el cliente fía(o sea, de loa cuales el cliente es fiador).
+    case 'buscarPagosQueFia': #todos los pagos a los cuales el cliente fía(o sea, de los cuales el cliente es fiador).
         $cedula_fiador=$_GET['cedula_fiador'];
         if (Cliente::cedulaExiste($cedula_fiador)) {
             $respuesta['mensaje']=Pago::buscarPagosQueFia($cedula_fiador);
@@ -59,14 +59,14 @@ switch($opcion){
             $respuesta['exito']=false;
         }
         break;
-    case 'buscarDeudoresYSusFiadores': #el deudor del pago y a continuación todos los datos de los clientes que 
+    case 'buscarDeudorYSusFiadores': #el deudor del pago y a continuación todos los datos de los clientes que 
                                        #son fiadores de al menos un pago que pertenezca al deudor del pago 
                                        #ingresado en la búsqueda. Ejemplo: si se ingresa el id 899 y se trata de 
                                        #un pago de Pedro, se deben imprimir los datos de todos los clientes que 
                                        #son fiadores de al menos un pago de Pedro.
-        $id=$_POST['id'];
+        $id=$_GET['id'];
         if (Pago::idExiste($id)) {
-            $respuesta['mensaje']=Pago::buscarDeudoresYSusFiadores();
+            $respuesta['mensaje']=Pago::buscarDeudorYSusFiadores($id);
             if($respuesta['mensaje']){
                 $respuesta['exito']=true;
             }else{
