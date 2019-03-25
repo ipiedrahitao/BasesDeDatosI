@@ -1,6 +1,20 @@
 <?php 
 require_once('../models/conex.php');
 class Pago{
+    public static function todos(){
+        $query="SELECT * 
+                FROM PAGO;";
+        $res=mysqli_query(Connex::conn(),$query);
+        $rows=Array();
+        if ($res->num_rows > 0) {
+            while($row = $res->fetch_assoc()) {
+                $rows[]=$row;
+            }
+            return $rows;
+        } else {
+            return false;
+        }
+    }
     public static function idExiste($id){
         $query="SELECT * 
                 FROM PAGO 
@@ -37,7 +51,7 @@ class Pago{
             if ($res) {
                 return true;
             }else{
-                echo("Error description: " . mysqli_error($res));
+                // echo("Error description: " . mysqli_error($res));
                 return false;
             }
         }

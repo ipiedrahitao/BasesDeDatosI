@@ -8,10 +8,17 @@ if (isset($_POST['opcion'])) {
 }
 $respuesta=Array();
 switch($opcion){
+    case 'todosLosPagos':
+        $respuesta['mensaje']=Pago::todos();
+        if($respuesta['mensaje']){
+            $respuesta['exito']=true;
+        }else{
+            $respuesta['exito']=false;
+        }
+        break;
     case 'insertarPago':
         $id=$_POST['id'];
         $saldo=$_POST['saldo'];
-        $fecha=$_POST['fecha'];
         $total=$_POST['total'];
         $cedula_deudor=$_POST['cedula_deudor'];
         $cedula_fiador=$_POST['cedula_fiador'];
@@ -22,7 +29,6 @@ switch($opcion){
             } else {
                 $respuesta['exito']=Pago::registrarPago($id,
                                                         $saldo,
-                                                        $fecha,
                                                         $total,
                                                         $cedula_deudor,
                                                         $cedula_fiador
@@ -39,8 +45,8 @@ switch($opcion){
         break;
     case 'eliminarPago':
         $id=$_POST['id'];
-        $respuesta['exito']=Cliente::eliminarCliente($id);
-        echo $respuesta['exito'];
+        $respuesta['exito']=Pago::eliminarPago($id);
+        $respuesta['mensaje']='Operación exitosa';        
         if (!$respuesta['exito']) {
             $respuesta['mensaje']='Es posible que ese número de id no exista, intenta otro por favor';
         }

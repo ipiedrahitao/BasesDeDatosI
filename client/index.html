@@ -79,18 +79,18 @@
                                     <input type="text" class="form-control" id="total" placeholder="Ingrese el total" name="total" required/>
                                 </div>
                                 <div class="form-group">
-                                    <label for="deudor">Deudor:</label>
+                                    <label for="cedula_deudor">Cédula deudor:</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" id="deudor" placeholder="Seleccione al deudor" name="deudor" disabled required/>
+                                        <input type="text" class="form-control" id="cedula_deudor" placeholder="Seleccione al deudor" name="cedula_deudor" disabled required/>
                                         <div class="input-group-btn">
                                             <button class="btn btn-warning" id="btnSeleccionarDeudor" data-toggle="modal" data-target="#modalDeudor" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="fiador">Fiador:</label>
+                                    <label for="cedula_fiador">Cédula fiador:</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" id="fiador" placeholder="Seleccione al fiador" name="fiador" disabled required/>
+                                        <input type="text" class="form-control" id="cedula_fiador" placeholder="Seleccione al fiador" name="cedula_fiador" disabled required/>
                                         <div class="input-group-btn">
                                             <button class="btn btn-warning" id="btnSeleccionarFiador" data-toggle="modal" data-target="#modalFiador" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                                         </div>
@@ -116,7 +116,7 @@
                                 <h4 class="modal-title">Deudor</h4>
                                 </div>
                                 <div class="modal-body">
-                                        <table class="table table-hover tablaClientes">
+                                        <table class="table table-hover tablaClientes" id="tablaDeudor">
                                                 
                                                   
                                         </table>
@@ -138,8 +138,7 @@
                                 <h4 class="modal-title">Fiador</h4>
                                 </div>
                                 <div class="modal-body">
-                                        <table class="table table-hover tablaClientes">
-                                            
+                                        <table class="table table-hover tablaClientes" id="tablaFiador">
                                         </table>
                                 </div>
                                 <div class="modal-footer">

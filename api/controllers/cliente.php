@@ -60,6 +60,7 @@ switch($opcion){
     case 'eliminarCliente':
         $cedula=$_POST['cedula'];
         $respuesta['exito']=Cliente::eliminarCliente($cedula);
+        $respuesta['mensaje']='Operación exitosa';        
         if (!$respuesta['exito']) {
             $respuesta['mensaje']='Operación sin exito, intenta de nuevo por favor';
         }

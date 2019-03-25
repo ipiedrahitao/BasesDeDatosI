@@ -26,36 +26,31 @@
         <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-4">
-                <ul class="list-group">
-                    <li class="list-group-item active text-center"><h4>CLIENTES</h4></li>
-                    <li class="list-group-item"><b>Cédula: </b>xxxxxxxx <b>Nombre: </b>xxxxxxxx</li>
-                    <li class="list-group-item"><b>Cédula: </b>xxxxxxxx <b>Nombre: </b>xxxxxxxx</li>
-                    <li class="list-group-item"><b>Cédula: </b>xxxxxxxx <b>Nombre: </b>xxxxxxxx</li>
+                <ul class="list-group" id="listaClientes">
+
                 </ul> 
-                <form>
+                <form class="myform">
                     <div class="input-group">
                         <input type="text" class="form-control" id="cedula" placeholder="Ingrese la cédula" name="cedula" required/>
                         <div class="input-group-btn">
-                            <button class="btn btn-warning" id="btnEliminarPago" type="submit"><i class="glyphicon glyphicon-trash"></i></button>
+                            <button class="btn btn-warning" id="btnEliminarCliente" type="submit"><i class="glyphicon glyphicon-trash"></i></button>
                         </div>
                     </div>
+                    <input type="hidden" class="form-control" id="opcion" name="opcion" value="eliminarCliente" >
                 </form>
             </div>
             <div class="col-md-2"></div>
             <div class="col-md-4">
-                <ul class="list-group">
-                    <li class="list-group-item active text-center"><h4>PAGOS</h4></li>
-                    <li class="list-group-item"><b>ID: </b>xxxxxxxx <b>Saldo: </b>xxxxxxxx</li>
-                    <li class="list-group-item"><b>ID: </b>xxxxxxxx <b>Saldo: </b>xxxxxxxx</li>
-                    <li class="list-group-item"><b>ID: </b>xxxxxxxx <b>Saldo: </b>xxxxxxxx</li>
+                <ul class="list-group" id="listaPagos">
                 </ul> 
-                <form>
+                <form class="myform">
                     <div class="input-group">
                         <input type="text" class="form-control" id="id" placeholder="Ingrese el ID" name="id" required/>
                         <div class="input-group-btn">
                             <button class="btn btn-warning" id="btnEliminarPago" type="submit"><i class="glyphicon glyphicon-trash"></i></button>
                         </div>
                     </div>
+                    <input type="hidden" class="form-control" id="opcion" name="opcion" value="eliminarPago" >
                 </form>
             </div>
         </div>

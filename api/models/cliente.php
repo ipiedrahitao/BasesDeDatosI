@@ -97,13 +97,15 @@ class Cliente{
         }
     }
     public static function buscarFiadoresDelMismo(){
-        $query="SELECT c.*
+        $query="SELECT DISTINCT c.*
                 FROM CLIENTE AS c, PAGO AS p 
-                WHERE c.cedula=p.cedula_fiador AND 0 = (SELECT COUNT(p2.cedula_fiador) #Cuenta los pagos de este fiador con otros deudores
-                                                        FROM PAGO AS p2 
-                                                        WHERE p2.cedula_fiador=p.cedula_fiador AND p2.cedula_deudor!=p.cedula_deudor)
-                GROUP BY p.cedula_deudor 
-                HAVING COUNT(p.cedula_fiador)>=2;";
+                WHERE c.cedula=p.cedula_fiador 
+                    AND 2<= (SELECT COUNT(p2.cedula_fiador) #Cuenta los pagos de este fiador con otros deudores
+                            FROM PAGO AS p2 
+                            WHERE p2.cedula_fiador=p.cedula_fiador AND p2.cedula_deudor=p.cedula_deudor) 
+                    AND 0 = (SELECT COUNT(*)
+                            FROM PAGO AS p2
+                            WHERE p.cedula_deudor!=p2.cedula_deudor)";
         $res=mysqli_query(Connex::conn(),$query);
         $rows=Array();
         if ($res->num_rows > 0) {

@@ -20,7 +20,11 @@ $(document).ready(function () {
             $("#formPago").fadeToggle();
         }
     });
-    $("td").click(function() {
-        alert();
+    $(".tablaClientes").on("click","tbody tr",function () {
+        if ($(this).parent().parent().attr("id")=="tablaDeudor") {
+            $("#cedula_deudor").val($(this).find("td").html());            
+        } else {
+            $("#cedula_fiador").val($(this).find("td").html());            
+        }
     });
 });

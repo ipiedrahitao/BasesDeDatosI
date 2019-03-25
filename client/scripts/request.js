@@ -1,5 +1,5 @@
 $(document).ready(()=>{
-    $("#btnRegistrarCliente").click(function(evento){
+    $("#btnRegistrarCliente,#btnRegistrarPago").click(function(evento){
         evento.preventDefault();
         var datos = $(this).parent().serializeArray();
         switch ($(this).parent().attr("id")) {
@@ -9,15 +9,18 @@ $(document).ready(()=>{
                 } else {
                     datos.push({name:'tipo', value:'comun'});
                 }
+                controller="cliente";
                 break;
             case "formPago":
-                
+                datos.push({name:'cedula_deudor', value:$("#cedula_deudor").val()});
+                datos.push({name:'cedula_fiador', value:$("#cedula_fiador").val()});                
+                controller="pago";                
                 break;
         }
-        ejecutarAJAX(datos,"cliente","post",(res)=>{   
-
+        ejecutarAJAX(datos,controller,"post",(res)=>{   
             if (res.exito) {
                 $(".myForm")[0].reset();
+                $(".myForm")[1].reset();
             } 
             mostrarMensaje(res);
         });
@@ -188,8 +191,68 @@ $(document).ready(()=>{
         }
         ejecutarAJAX(opc,"pago","get",callback);
     });
+    $("#btnEliminarCliente,#btnEliminarPago").click(function(evento){
+        evento.preventDefault();
+        var datos = $(this).parent().parent().parent().serializeArray();
+        switch ($(this).attr("id")) {
+            case "btnEliminarCliente":            
+                controller="cliente";
+                break;
+            case "btnEliminarPago":              
+                controller="pago";                
+                break;
+        }
+        ejecutarAJAX(datos,controller,"post",(res)=>{   
+            if (res.exito) {
+                cargarClientes();
+                cargarPagos();
+                $(".myform")[0].reset();
+                $(".myform")[1].reset();
+            } 
+            mostrarMensaje(res);
+        });
+      });
+    if (window.location.href=='http://localhost/Veterinaria/client/eliminar.html') {
+        cargarClientes();
+        cargarPagos();
+    }
 });
-
+function cargarClientes() {
+        ejecutarAJAX({opcion:'todosLosClientes'},'cliente','get',(res)=>{
+            if (!res.exito) {
+                mostrarMensaje(res);                
+            } else {
+                var lista = "<li class='list-group-item active text-center'><h4>CLIENTES</h4></li>";
+                $.each(res.mensaje,function (i,val) {
+                    lista +=
+                    "<li class='list-group-item'><b>Cédula: </b>" +
+                    val.cedula +
+                    " <b>Nombre: </b>" +
+                    val.nombre +
+                    "</li>";
+                });
+                $("#listaClientes").html(lista);
+            }
+    });
+}
+function cargarPagos() {
+    ejecutarAJAX({opcion:'todosLosPagos'},'pago','get',(res)=>{
+        if (!res.exito) {
+            mostrarMensaje(res);                
+        } else {
+            var lista = "<li class='list-group-item active text-center'><h4>PAGOS</h4></li>";
+            $.each(res.mensaje,function (i,val) {
+                lista +=
+                "<li class='list-group-item'><b>ID: </b>" +
+                val.id +
+                " <b>Saldo: </b>" +
+                val.saldo +
+                "</li>";
+            });
+            $("#listaPagos").html(lista);
+        }
+    });
+}
 function mostrarMensaje(res) {
         if (res.exito) {
             $("#mensajeExito").text('Operación exitosa.');
@@ -223,6 +286,7 @@ function ejecutarAJAX(datos,controller,method,callback) {
         } catch (e) {
           objJSON = respuesta;
           alert(objJSON);
+          console.log(e);
         }
       })
       .fail(function() {
