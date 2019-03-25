@@ -220,7 +220,8 @@ $(document).ready(()=>{
 function cargarClientes() {
         ejecutarAJAX({opcion:'todosLosClientes'},'cliente','get',(res)=>{
             if (!res.exito) {
-                mostrarMensaje(res);                
+                var lista = "<li class='list-group-item active text-center'><h4>CLIENTES</h4></li>";
+                lista+="<li class='list-group-item'>No hay clientes registrados.</li>";
             } else {
                 var lista = "<li class='list-group-item active text-center'><h4>CLIENTES</h4></li>";
                 $.each(res.mensaje,function (i,val) {
@@ -231,14 +232,15 @@ function cargarClientes() {
                     val.nombre +
                     "</li>";
                 });
-                $("#listaClientes").html(lista);
             }
+            $("#listaClientes").html(lista);
     });
 }
 function cargarPagos() {
     ejecutarAJAX({opcion:'todosLosPagos'},'pago','get',(res)=>{
         if (!res.exito) {
-            mostrarMensaje(res);                
+            var lista = "<li class='list-group-item active text-center'><h4>PAGOS</h4></li>";
+            lista+="<li class='list-group-item'>No hay pagos registrados.</li>";             
         } else {
             var lista = "<li class='list-group-item active text-center'><h4>PAGOS</h4></li>";
             $.each(res.mensaje,function (i,val) {
@@ -249,8 +251,8 @@ function cargarPagos() {
                 val.saldo +
                 "</li>";
             });
-            $("#listaPagos").html(lista);
         }
+        $("#listaPagos").html(lista);
     });
 }
 function mostrarMensaje(res) {
