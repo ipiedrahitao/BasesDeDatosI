@@ -71,7 +71,7 @@ switch($opcion){
                                        #un pago de Pedro, se deben imprimir los datos de todos los clientes que 
                                        #son fiadores de al menos un pago de Pedro.
         $id=$_GET['id'];
-        if (Pago::idExiste($id)) {
+        if (Pago::idExiste($id) && $id!=null) {
             $respuesta['mensaje']=Pago::buscarDeudorYSusFiadores($id);
             if($respuesta['mensaje']){
                 $respuesta['exito']=true;

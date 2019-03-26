@@ -123,70 +123,78 @@ $(document).ready(()=>{
         if ($(this).attr("id")=="btnTipoIPago" ) {
             opc={opcion:"buscarPagosQueFia",cedula_fiador:$("#id").val()};
             callback=(res)=>{
-                var tabla = "<thead><tr><th>ID</th><th>Total</th><th>Saldo</th><th>Fecha</th><th>Deudor</th><th>Fiador</th><th></tr></thead><tbody>";
-                $.each(res.mensaje,function (i,val) {
-                    tabla +=
-                    "<tr><td>" +
-                    val.id +
-                    "</td><td>" +
-                    val.total +
-                    "</td><td>" +
-                    val.saldo +
-                    "</td><td>" +
-                    val.fecha +
-                    "</td><td>" +
-                    val.cedula_deudor +
-                    "</td><td>" +
-                    val.cedula_fiador +
-                    "</td></tr>";
-                });
-                tabla+="</tbody>";
-                $(".tablaPagos").html(tabla);
+                if (res.exito) {
+                    var tabla = "<thead><tr><th>ID</th><th>Total</th><th>Saldo</th><th>Fecha</th><th>Deudor</th><th>Fiador</th><th></tr></thead><tbody>";
+                    $.each(res.mensaje,function (i,val) {
+                        tabla +=
+                        "<tr><td>" +
+                        val.id +
+                        "</td><td>" +
+                        val.total +
+                        "</td><td>" +
+                        val.saldo +
+                        "</td><td>" +
+                        val.fecha +
+                        "</td><td>" +
+                        val.cedula_deudor +
+                        "</td><td>" +
+                        val.cedula_fiador +
+                        "</td></tr>";
+                    });
+                    tabla+="</tbody>";
+                    $(".tablaPagos").html(tabla);
+                } else {
+                    mostrarMensaje(res);
+                }
             }
         }else{
             opc={opcion:"buscarDeudorYSusFiadores",id:$("#id").val()};
             callback=(res)=>{
-
-                var tabla = "<thead><tr><th>Cédula</th><th>Nombre</th><th>Fiando</th><th>Tipo</th><th>Nombre de la granja</th><th>Número de animales</th><th>Dirección de granja</th></tr></thead><tbody>";
-                $.each(res.mensaje,function (i,val) {
-                    if (i!=0) {
-                        tabla +=
-                        "<tr><td>" +
-                        val.cedula +
-                        "</td><td>" +
-                        val.nombre +
-                        "</td><td>" +
-                        val.numero_de_telefono +
-                        "</td><td>" +
-                        val.tipo +
-                        "</td><td>" +
-                        val.nombre_de_granja +
-                        "</td><td>" +
-                        val.numero_animales +
-                        "</td><td>" +
-                        val.direccion_de_granja +
-                        "</td></tr>";
-                    }else{
-                        tabla +=
-                        "<tr><td><b>" +
-                        val.cedula +
-                        "</b></td><td><b>" +
-                        val.nombre +
-                        "</b></td><td><b>" +
-                        val.numero_de_telefono +
-                        "</b></td><td><b>" +
-                        val.tipo +
-                        "</b></td><td><b>" +
-                        val.nombre_de_granja +
-                        "</b></td><td><b>" +
-                        val.numero_animales +
-                        "</b></td><td><b>" +
-                        val.direccion_de_granja +
-                        "</b></td></tr>";
-                    }
-                });
-                tabla+="</tbody>";
-                $(".tablaPagos").html(tabla);
+                if (res.exito) {
+                    var tabla = "<thead><tr><th>Cédula</th><th>Nombre</th><th>Número de teléfono</th><th>Tipo</th><th>Nombre de la granja</th><th>Número de animales</th><th>Dirección de granja</th></tr></thead><tbody>";
+                    $.each(res.mensaje,function (i,val) {
+                        if (i!=0) {
+                            tabla +=
+                            "<tr><td>" +
+                            val.cedula +
+                            "</td><td>" +
+                            val.nombre +
+                            "</td><td>" +
+                            val.numero_de_telefono +
+                            "</td><td>" +
+                            val.tipo +
+                            "</td><td>" +
+                            val.nombre_de_granja +
+                            "</td><td>" +
+                            val.numero_animales +
+                            "</td><td>" +
+                            val.direccion_de_granja +
+                            "</td></tr>";
+                        }else{
+                            tabla +=
+                            "<tr><td><b>" +
+                            val.cedula +
+                            "</b></td><td><b>" +
+                            val.nombre +
+                            "</b></td><td><b>" +
+                            val.numero_de_telefono +
+                            "</b></td><td><b>" +
+                            val.tipo +
+                            "</b></td><td><b>" +
+                            val.nombre_de_granja +
+                            "</b></td><td><b>" +
+                            val.numero_animales +
+                            "</b></td><td><b>" +
+                            val.direccion_de_granja +
+                            "</b></td></tr>";
+                        }
+                    });
+                    tabla+="</tbody>";
+                    $(".tablaPagos").html(tabla);
+                } else {
+                    mostrarMensaje(res);  
+                }
+                
             }
         }
         ejecutarAJAX(opc,"pago","get",callback);
