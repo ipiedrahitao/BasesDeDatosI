@@ -46,4 +46,4 @@ ALTER TABLE PAGO
 ALTER TABLE PAGO
     ADD CONSTRAINT fk_fiador_pago FOREIGN KEY (cedula_fiador) REFERENCES CLIENTE(cedula) ON DELETE CASCADE;
 ALTER TABLE PAGO
-    ADD CONSTRAINT pk_pago PRIMARY KEY (id,cedula_deudor,cedula_fiador);
+    ADD CONSTRAINT pk_pago PRIMARY KEY (id);

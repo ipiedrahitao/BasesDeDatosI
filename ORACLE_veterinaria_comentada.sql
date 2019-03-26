@@ -193,7 +193,7 @@ ALTER TABLE PAGO
     ADD CONSTRAINT fk_cedula_fiador FOREIGN KEY (cedula_fiador) REFERENCES CLIENTE(cedula);
 /*quitando los clientes de la clave primaria quedaría solo el id de clave primaria, las céudlas sólo serían claves foráneas*/
 ALTER TABLE PAGO
-    ADD CONSTRAINT pk_pago PRIMARY KEY (id,cedula_deudor,cedula_fiador);
+    ADD CONSTRAINT pk_pago PRIMARY KEY (id);
 
 /*TABLA SERVICIO*/
 
