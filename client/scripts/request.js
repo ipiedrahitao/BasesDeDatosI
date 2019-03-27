@@ -48,6 +48,7 @@ $(document).ready(()=>{
     });
     $("#btnTipoICliente,#btnTipoIICliente,#btnTipoIIICliente").click(function (evento) {
         evento.preventDefault();
+        $(".tablaClientes").hide();
         if ($(this).attr("id")=="btnTipoICliente" ) {
             opc="buscarClientesSinPago";
             callback=(res)=>{
@@ -71,7 +72,7 @@ $(document).ready(()=>{
                     "</td></tr>";
                 });
                 tabla+="</tbody>";
-                $(".tablaClientes").html(tabla);
+                $(".tablaClientes").html(tabla).show();
             }
         } else if ($(this).attr("id")=="btnTipoIICliente") {
             opc="buscarClientesFiadores";
@@ -88,7 +89,7 @@ $(document).ready(()=>{
                     "</td></tr>";
                 });
                 tabla+="</tbody>";
-                $(".tablaClientes").html(tabla);
+                $(".tablaClientes").html(tabla).show();
             }
         }else{
             opc="buscarClientesFiadoresDelMismo";
@@ -113,13 +114,14 @@ $(document).ready(()=>{
                     "</td></tr>";
                 });
                 tabla+="</tbody>";
-                $(".tablaClientes").html(tabla);
+                $(".tablaClientes").html(tabla).show();
             }
         }
         ejecutarAJAX({opcion:opc},"cliente","get",callback);
     });
     $("#btnTipoIPago,#btnTipoIIPago").click(function (evento) {
         evento.preventDefault();
+        $(".tablaPagos").hide();
         if ($(this).attr("id")=="btnTipoIPago" ) {
             opc={opcion:"buscarPagosQueFia",cedula_fiador:$("#id").val()};
             callback=(res)=>{
@@ -142,7 +144,7 @@ $(document).ready(()=>{
                         "</td></tr>";
                     });
                     tabla+="</tbody>";
-                    $(".tablaPagos").html(tabla);
+                    $(".tablaPagos").html(tabla).show();
                 } else {
                     mostrarMensaje(res);
                 }
@@ -190,7 +192,7 @@ $(document).ready(()=>{
                         }
                     });
                     tabla+="</tbody>";
-                    $(".tablaPagos").html(tabla);
+                    $(".tablaPagos").html(tabla).show();
                 } else {
                     mostrarMensaje(res);  
                 }

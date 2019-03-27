@@ -11,7 +11,7 @@ CREATE TABLE CLIENTE
     nombre_de_granja VARCHAR(30),
     numero_animales INTEGER(12),
     direccion_de_granja VARCHAR(30)
-);
+) ENGINE = InnoDB;
 ALTER TABLE CLIENTE
     ADD CONSTRAINT chk_cedula_cliente CHECK (cedula>0);
 ALTER TABLE CLIENTE
@@ -30,7 +30,7 @@ CREATE TABLE PAGO
     saldo INTEGER(10) NOT NULL,
     fecha DATE NOT NULL, -- yyyy-mm-dd
     total INTEGER(10) NOT NULL
-);
+) ENGINE = InnoDB;
 ALTER TABLE PAGO
     ADD CONSTRAINT chk_saldo_pago CHECK (saldo>=0 AND saldo<=total);
 ALTER TABLE PAGO
