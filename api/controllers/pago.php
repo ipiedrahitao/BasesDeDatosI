@@ -58,6 +58,7 @@ switch($opcion){
             if($respuesta['mensaje']){
                 $respuesta['exito']=true;
             }else{
+                $respuesta['mensaje']='No hay datos.';  
                 $respuesta['exito']=false;
             }
         } else {
@@ -76,6 +77,7 @@ switch($opcion){
             if($respuesta['mensaje']){
                 $respuesta['exito']=true;
             }else{
+                $respuesta['mensaje']='No hay datos.';  
                 $respuesta['exito']=false;
             }
         } else {
